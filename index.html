@@ -9,15 +9,19 @@
 </head>
 <body>
 
+  
+<!-- this will keep the slideshow and captions centered -->
   <div class="wrapper">
     <div id="slideshow">
+      <!-- JS swaps this one image’s src to show each slide -->
       <img id="slide" alt="Slideshow image">
     </div>
+    <!-- this will be the caption under each picture -->
     <p id="caption"></p>
   </div>
 
   <script>
-    /* 1️⃣  Put your own image files here (local paths or full URLs) */
+    /* 1️⃣  Put your own image files here (local paths. USE EXACT EVERYTHING AND MAKE SURE THE PICTURES ARE ACTAULLY IN THE FOLDER! I struggled for hours before realizing some are .jpg or .jpeg and that the path i made the "I" is capitalized or full URLs) with any kind of descripstion you would want the readers to read*/
     const images = [
       {src:"Images/Naruto.jpg", caption:"Naurto and the Jinchurikis"},
       {src:"Images/Dan Da Dan.jpeg", caption:"Miss Ayase and Okarun From Dan Da Dan"},
@@ -27,18 +31,19 @@
 
     const slide     = document.getElementById("slide");
     const captionEl = document.getElementById("caption");
-    let current     = 0;
-
+    let current     = 0;    // index for next picture
+    
+ /* swaps to the next image + caption every 4 seconds */
     function showNext(){
       slide.classList.remove("active");          // start fade-out
       setTimeout(() => {
         const {src, caption} = images[current];
-        slide.src = src;
-        slide.alt = caption;
-        captionEl.textContent = caption;
+        slide.src = src;  // new picture
+        slide.alt = caption;  // attracts the people who like to read
+        captionEl.textContent = caption;  // new caption
         slide.classList.add("active");           // fade-in
         current = (current + 1) % images.length; // loop
-      }, 200);
+      }, 200);  // you can add a little delay here for a smoother transition to next slide
     }
 
     window.addEventListener("load", () => {
